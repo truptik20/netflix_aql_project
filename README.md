@@ -26,6 +26,13 @@ The data for this project is sourced from the Kaggle Dataset:
 
 - **Dataset Link:** [Netflix Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows?resource=download)
 
+## Tools & Technologies
+
+- PostgreSQL
+- SQL
+- pgAdmin 4
+- Kaggle Dataset
+
 ## Schema
 
 ```sql
@@ -241,6 +248,18 @@ GROUP BY 1;
 ```
 
 **Objective:** Categorize Netflix content as Bad or Good based on the presence of keywords such as kill or violence in the description and count each category.
+
+## SQL Concepts Used
+
+- Aggregate Functions
+- GROUP BY and ORDER BY
+- Subqueries
+- Common Table Expressions (CTEs)
+- Window Functions
+- String Functions
+- Date Functions
+- CASE Statements
+- Data Filtering
 
 ## Findings and Conclusion
 
