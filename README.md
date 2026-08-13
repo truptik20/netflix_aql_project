@@ -241,3 +241,12 @@ GROUP BY 1;
 ```
 
 **Objective:** Categorize Netflix content as Bad or Good based on the presence of keywords such as kill or violence in the description and count each category.
+
+## Findings and Conclusion
+
+- Content Mix: Netflix contains a wide variety of Movies and TV Shows across different genres and ratings.
+- Regional Trends: Countries like India contribute significantly to Netflix’s content library.
+- Audience Insights: Rating analysis helps identify the target audience for different content types.
+- Content Patterns: Genre, duration, actor, and director analysis reveals useful trends in Netflix’s catalog.
+
+This SQL analysis provides useful insights into Netflix’s content distribution, audience preferences, regional trends, and overall content strategy.
