@@ -25,3 +25,30 @@ Using SQL queries, the project analyzes content distribution, ratings, release t
 The data for this project is sourced from the Kaggle Dataset:
 
 - **Dataset Link:** [Netflix Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows?resource=download)
+
+## Schema
+
+```sql
+DROP TABLE IF EXISTS netflix;
+CREATE TABLE netflix
+(
+	show_id VARCHAR(7),
+	type VARCHAR(10),
+	title VARCHAR(150),
+	director VARCHAR(208),
+	castS VARCHAR(1000),
+	country VARCHAR(150),
+	date_added VARCHAR(50),
+	release_year INT,
+	rating VARCHAR(10),
+	duration VARCHAR(15),
+	listed_in VARCHAR(100),
+	description VARCHAR(250)
+);
+```
+
+## Business Problems and Solutions
+
+### 1. Count the number of Movies vs TV shows
+
+
