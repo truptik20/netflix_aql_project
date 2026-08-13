@@ -82,18 +82,132 @@ ORDER BY type, COUNT(*) DESC) as t1
 WHERE ranking = 1;
 ```
 
-### 1. Count the number of Movies vs TV shows
+### 3. List all movies released in a specific year (e.g., 2020).
 
-### 1. Count the number of Movies vs TV shows
+```sql
+SELECT type, title, release_year
+FROM netflix
+WHERE type = 'Movie' AND release_year = 2020;
+```
 
-### 1. Count the number of Movies vs TV shows
+### 4. Find the top 5 countries with the most content on netflix.
 
-### 1. Count the number of Movies vs TV shows
+```sql
+SELECT UNNEST(STRING_TO_ARRAY(country, ', ' )) as new_country , COUNT(show_id)
+FROM netflix
+GROUP BY 1
+ORDER BY COUNT(*) DESC
+LIMIT 5;
+```
 
-### 1. Count the number of Movies vs TV shows
+### 5. Identify the logest movie.
 
-### 1. Count the number of Movies vs TV shows
+```sql
+SELECT * FROM netflix
+WHERE 
+	type = 'Movie' AND duration = (SELECT MAX(duration) FROM netflix);
+```
 
-### 1. Count the number of Movies vs TV shows
+### 6. Find content added in the last 5 years.
 
-### 1. Count the number of Movies vs TV shows
+```sql
+SELECT *
+FROM netflix
+WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL ' 5 YEARS';
+```
+
+### 7. Find all the movies/tv shows by director 'Rajiv Chilaka'.
+
+```sql
+SELECT *
+FROM netflix
+WHERE director = 'Rajiv Chilaka';
+
+SELECT *
+FROM netflix
+WHERE director LIKE '%Rajiv Chilaka%';
+```
+
+### 8. List all tv shows with more than 5 seasons
+
+```sql
+SELECT * FROM netflix
+WHERE type = 'TV Show' AND SPLIT_PART(duration, ' ', 1)::numeric > 5;
+```
+
+### 9. Count the number of content items in each genre.
+
+```sql
+SELECT COUNT(show_id), UNNEST(STRING_TO_ARRAY(listed_in, ',')) as genre
+FROM netflix
+GROUP BY 2;
+```
+
+### 10. Find each year and the average numbers of content release by India on netflix. Return top 5 year with highest avg Content release.
+
+```sql
+SELECT 
+	EXTRACT(YEAR FROM TO_DATE(date_added, 'Month DD, YYYY')), 
+	COUNT(*), 
+	ROUND(COUNT(*)::numeric/(SELECT COUNT(*) FROM netflix WHERE country = 'India')::numeric * 100, 2) as avg_content_per_year
+FROM netflix
+WHERE country = 'India'
+GROUP BY 1;
+```
+
+### 11. List all movies that are documentaries.
+
+```sql
+SELECT * FROM netflix
+WHERE type = 'Movie' AND listed_in LIKE '%Documentaries%';
+```
+
+### 12. Find all content without a director.
+
+```sql
+SELECT * FROM netflix
+WHERE director IS NULL;
+```
+
+### 13. Find how many movies actor 'Salman Khan' appeared in last 10 years.
+
+```sql
+SELECT *
+FROM netflix
+WHERE release_year > EXTRACT(YEAR FROM CURRENT_DATE) - 10 AND casts LIKE '%Salman Khan%';
+```
+
+### 14. Find the top 10 actors who have appeared in the highest number of movies produced in India.
+
+```sql
+SELECT UNNEST(STRING_TO_ARRAY(casts, ',')) as actors, COUNT(*) as total_content
+FROM netflix
+WHERE country LIKE '%India%'
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
+```
+
+### 15. Categorize the content based on the presence of the keyword 'kill' and 'violence' in the decription field. Label content containing these keywords as 'Bad' and all other content as 'Good'. Count how many items fall into each category.
+
+```sql
+SELECT * FROM netflix
+WHERE description ILIKE '*kill%' OR description ILIKE '%violence%';
+
+
+with new_table
+AS
+(
+SELECT *,
+	CASE
+	WHEN description ILIKE '*kill%' OR description ILIKE '%violence%' THEN 'Bad'
+		ELSE 'Good'
+	END category
+FROM netflix
+)
+SELECT 
+	category,
+	COUNT(*) as total_content
+FROM new_table
+GROUP BY 1;
+```
