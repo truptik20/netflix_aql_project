@@ -57,6 +57,8 @@ FROM netflix
 GROUP BY type;
 ```
 
+**Objective:** Compare the total number of Movies and TV Shows available on Netflix.
+
 ### 2. Find the most common rating for movies and TV shows.
 
 ```sql
