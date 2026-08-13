@@ -54,6 +54,18 @@ CREATE TABLE netflix
 );
 ```
 
+## SQL Concepts Used
+
+- Aggregate Functions
+- GROUP BY and ORDER BY
+- Subqueries
+- Common Table Expressions (CTEs)
+- Window Functions
+- String Functions
+- Date Functions
+- CASE Statements
+- Data Filtering
+
 ## Business Problems and Solutions
 
 ### 1. Count the number of Movies vs TV shows
@@ -248,18 +260,6 @@ GROUP BY 1;
 ```
 
 **Objective:** Categorize Netflix content as Bad or Good based on the presence of keywords such as kill or violence in the description and count each category.
-
-## SQL Concepts Used
-
-- Aggregate Functions
-- GROUP BY and ORDER BY
-- Subqueries
-- Common Table Expressions (CTEs)
-- Window Functions
-- String Functions
-- Date Functions
-- CASE Statements
-- Data Filtering
 
 ## Findings and Conclusion
 
