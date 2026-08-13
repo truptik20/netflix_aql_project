@@ -57,7 +57,7 @@ FROM netflix
 GROUP BY type;
 ```
 
-**Objective:** Compare the total number of Movies and TV Shows available on Netflix.
+**Objective:** Determine the total number of Movies and TV Shows available on Netflix.
 
 ### 2. Find the most common rating for movies and TV shows.
 
@@ -84,6 +84,8 @@ ORDER BY type, COUNT(*) DESC) as t1
 WHERE ranking = 1;
 ```
 
+**Objective:** Find the most common rating for both Movies and TV Shows.
+
 ### 3. List all movies released in a specific year (e.g., 2020).
 
 ```sql
@@ -91,6 +93,8 @@ SELECT type, title, release_year
 FROM netflix
 WHERE type = 'Movie' AND release_year = 2020;
 ```
+
+**Objective:** Identify all Movies released in a specific year, such as 2020.
 
 ### 4. Find the top 5 countries with the most content on netflix.
 
@@ -102,6 +106,8 @@ ORDER BY COUNT(*) DESC
 LIMIT 5;
 ```
 
+**Objective:** Find the top five countries with the most Netflix titles.
+
 ### 5. Identify the logest movie.
 
 ```sql
@@ -110,6 +116,8 @@ WHERE
 	type = 'Movie' AND duration = (SELECT MAX(duration) FROM netflix);
 ```
 
+**Objective:** Identify the longest Movie available in the Netflix dataset.
+
 ### 6. Find content added in the last 5 years.
 
 ```sql
@@ -117,6 +125,8 @@ SELECT *
 FROM netflix
 WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL ' 5 YEARS';
 ```
+
+**Objective:** Find Movies and TV Shows added to Netflix within the last five years.
 
 ### 7. Find all the movies/tv shows by director 'Rajiv Chilaka'.
 
@@ -130,12 +140,16 @@ FROM netflix
 WHERE director LIKE '%Rajiv Chilaka%';
 ```
 
+**Objective:** Retrieve all titles directed by Rajiv Chilaka.
+
 ### 8. List all tv shows with more than 5 seasons
 
 ```sql
 SELECT * FROM netflix
 WHERE type = 'TV Show' AND SPLIT_PART(duration, ' ', 1)::numeric > 5;
 ```
+
+**Objective:** Find TV Shows that have more than five seasons.
 
 ### 9. Count the number of content items in each genre.
 
@@ -144,6 +158,8 @@ SELECT COUNT(show_id), UNNEST(STRING_TO_ARRAY(listed_in, ',')) as genre
 FROM netflix
 GROUP BY 2;
 ```
+
+**Objective:** Determine how many Netflix titles belong to each genre.
 
 ### 10. Find each year and the average numbers of content release by India on netflix. Return top 5 year with highest avg Content release.
 
@@ -157,12 +173,16 @@ WHERE country = 'India'
 GROUP BY 1;
 ```
 
+**Objective:** Analyze yearly content additions from India and identify the top-performing years.
+
 ### 11. List all movies that are documentaries.
 
 ```sql
 SELECT * FROM netflix
 WHERE type = 'Movie' AND listed_in LIKE '%Documentaries%';
 ```
+
+**Objective:** Find all Movies classified under the Documentaries genre.
 
 ### 12. Find all content without a director.
 
@@ -171,6 +191,8 @@ SELECT * FROM netflix
 WHERE director IS NULL;
 ```
 
+**Objective:** Identify Netflix titles that do not have director information.
+
 ### 13. Find how many movies actor 'Salman Khan' appeared in last 10 years.
 
 ```sql
@@ -178,6 +200,8 @@ SELECT *
 FROM netflix
 WHERE release_year > EXTRACT(YEAR FROM CURRENT_DATE) - 10 AND casts LIKE '%Salman Khan%';
 ```
+
+**Objective:** Find the number of Movies featuring Salman Khan in the last ten years.
 
 ### 14. Find the top 10 actors who have appeared in the highest number of movies produced in India.
 
@@ -189,6 +213,8 @@ GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 10;
 ```
+
+**Objective:** Identify the top 10 actors with the highest number of appearances in Indian Movies.
 
 ### 15. Categorize the content based on the presence of the keyword 'kill' and 'violence' in the decription field. Label content containing these keywords as 'Bad' and all other content as 'Good'. Count how many items fall into each category.
 
@@ -213,3 +239,5 @@ SELECT
 FROM new_table
 GROUP BY 1;
 ```
+
+**Objective:** Categorize Netflix content as Bad or Good based on the presence of keywords such as kill or violence in the description and count each category.
