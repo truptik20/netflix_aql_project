@@ -51,4 +51,49 @@ CREATE TABLE netflix
 
 ### 1. Count the number of Movies vs TV shows
 
+```sql
+SELECT type, COUNT (*) as total_content
+FROM netflix
+GROUP BY type;
+```
 
+### 2. Find the most common rating for movies and TV shows.
+
+```sql
+SELECT type, rating, COUNT (*) FROM netflix
+GROUP BY type, rating
+ORDER BY type, COUNT(*) DESC;
+-- LIMIT 6;
+
+SELECT 
+	type, rating, count (*), RANK() OVER(PARTITION BY type ORDER BY COUNT(*) DESC) as ranking
+FROM netflix
+GROUP BY type, rating
+ORDER BY type, COUNT(*) DESC;
+
+-- Sub-Query
+SELECT type, rating 
+FROM
+(SELECT 
+	type, rating, count (*), RANK() OVER(PARTITION BY type ORDER BY COUNT(*) DESC) as ranking
+FROM netflix
+GROUP BY type, rating
+ORDER BY type, COUNT(*) DESC) as t1
+WHERE ranking = 1;
+```
+
+### 1. Count the number of Movies vs TV shows
+
+### 1. Count the number of Movies vs TV shows
+
+### 1. Count the number of Movies vs TV shows
+
+### 1. Count the number of Movies vs TV shows
+
+### 1. Count the number of Movies vs TV shows
+
+### 1. Count the number of Movies vs TV shows
+
+### 1. Count the number of Movies vs TV shows
+
+### 1. Count the number of Movies vs TV shows
