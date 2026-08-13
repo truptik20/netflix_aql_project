@@ -11,7 +11,7 @@ Using SQL queries, the project analyzes content distribution, ratings, release t
 ## Objectives
 
 - Analyze the distribution of Movies vs. TV Shows on Netflix.
--  Identify the most common ratings for Movies and TV Shows.
+- Identify the most common ratings for Movies and TV Shows.
 - Examine content trends based on release year and addition date.
 - Analyze Netflix content across different **countries**.
 - Explore the duration of Movies and TV Shows.
