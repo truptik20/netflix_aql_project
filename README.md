@@ -269,3 +269,19 @@ GROUP BY 1;
 - Content Patterns: Genre, duration, actor, and director analysis reveals useful trends in Netflix’s catalog.
 
 This SQL analysis provides useful insights into Netflix’s content distribution, audience preferences, regional trends, and overall content strategy.
+
+## How to Run
+
+1. Download the Netflix dataset from Kaggle.
+2. Create the `netflix` table using the provided schema.
+3. Import the CSV data into PostgreSQL.
+4. Run the SQL queries from the project SQL file.
+5. Analyze the generated results and insights.
+
+## Project Structure
+
+netflix-sql-analysis/
+├── netflix_titles.csv
+├── netflix_analysis.sql
+├── netflix_logo.jpg
+└── README.md
